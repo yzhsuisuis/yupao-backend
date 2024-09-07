@@ -5,6 +5,7 @@ import com.yupi.yupao.domain.User;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author yangz
@@ -26,4 +27,6 @@ public interface UserService extends IService<User> {
     User getSafetyUser(User orignUser);
 
     int userLogout(HttpServletRequest request);
+
+    List<User> searchUsersByTags(List<String> tagNameList);
 }

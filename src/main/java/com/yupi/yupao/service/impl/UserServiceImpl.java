@@ -15,8 +15,10 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.yupi.yupao.constant.UserConstant.User_LOGIN_STATE;
 
@@ -194,6 +196,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public int userLogout(HttpServletRequest request) {
         request.getSession().removeAttribute(User_LOGIN_STATE);
         return 1;
+    }
+
+    @Override
+    public List<User> searchUsersByTags(List<String> tagNameList)
+    {
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        for (String tagName : tagNameList) {
+            userQueryWrapper = userQueryWrapper.like("tags",tagName);
+
+        }
+        List<User> users = userMapper.selectList(userQueryWrapper);
+        return users.stream().map(this::getSafetyUser).collect(Collectors.toList());
+
     }
 }
 

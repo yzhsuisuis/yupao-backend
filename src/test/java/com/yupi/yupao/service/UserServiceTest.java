@@ -1,11 +1,14 @@
 package com.yupi.yupao.service;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 
 import com.yupi.yupao.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 
@@ -93,6 +96,14 @@ public class UserServiceTest {
         String checkPassword = "123456789";
 
 
+    }
+    
+    @Test
+    public void testSearchUsersByTags()
+    {
+        List<String> tagNameList = Arrays.asList("java");
+        List<User> usersList = userService.searchUsersByTags(tagNameList);
+        System.out.println(usersList);
     }
 
 }
