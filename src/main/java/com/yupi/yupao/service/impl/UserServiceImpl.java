@@ -11,6 +11,7 @@ import com.yupi.yupao.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
@@ -188,6 +189,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setPlanetCode(originUser.getPlanetCode());
         safetyUser.setCreateTime(originUser.getCreateTime());
         safetyUser.setUpdateTime(originUser.getUpdateTime());
+        safetyUser.setTags(originUser.getTags());
         return safetyUser;
 
     }
@@ -201,6 +203,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public List<User> searchUsersByTags(List<String> tagNameList)
     {
+        if(CollectionUtils.isEmpty(tagNameList))
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         for (String tagName : tagNameList) {
             userQueryWrapper = userQueryWrapper.like("tags",tagName);
