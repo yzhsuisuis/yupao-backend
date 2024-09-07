@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 'jdbc:mysql://106.54.235.189:3306/user_center?useSSL=false'
+    username: root
+    password: ziheyang123
+  # session的存活时间为1天
+  session:
+    timeout: 86400
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /api
+
+
+

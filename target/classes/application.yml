@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: user-center
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/user_center
+    username: root
+    password: 1234
+  # session的存活时间为1天
+  session:
+    timeout: 86400
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete #默认deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+
+

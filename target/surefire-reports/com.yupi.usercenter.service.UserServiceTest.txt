@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.yupi.usercenter.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.507 s <<< FAILURE! - in com.yupi.usercenter.service.UserServiceTest
+userRegisterTest  Time elapsed: 0.022 s  <<< ERROR!
+com.yupi.usercenter.exception.BussinessException: 请求参数错误
+	at com.yupi.usercenter.service.UserServiceTest.userRegisterTest(UserServiceTest.java:45)
+
