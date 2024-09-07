@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="12345">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/generator/service/impl/UserServiceImpl.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +64,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.yupi.yupao.service" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -67,7 +76,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.YuPaoApplication">
+  <component name="RunManager" selected="JUnit.UserServiceTest.testSearchUsersByTags">
     <configuration name="YuPaoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.YuPaoApplication" />
       <module name="user-center-backend-master" />
@@ -81,6 +90,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserServiceTest.testSearchUsersByTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="user-center-backend-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yupi.yupao.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
+      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="testSearchUsersByTags" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserCenterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-center-backend-master" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yupi.yupao.YuPaoApplication" />
@@ -90,6 +115,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest.testSearchUsersByTags" />
         <item itemvalue="Application.YuPaoApplication" />
       </list>
     </recent_temporary>
@@ -107,7 +133,7 @@
       <workItem from="1725538999853" duration="2152000" />
       <workItem from="1725541226619" duration="9711000" />
       <workItem from="1725699932311" duration="208000" />
-      <workItem from="1725700169605" duration="679000" />
+      <workItem from="1725700169605" duration="2145000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
@@ -172,7 +198,21 @@
       <option name="project" value="LOCAL" />
       <updated>1725582628975</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="12345">
+      <created>1725701068727</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725701068727</updated>
+    </task>
+    <task id="LOCAL-00011" summary="12345">
+      <created>1725702160637</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725702160637</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
