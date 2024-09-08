@@ -10,7 +10,9 @@ import com.yupi.yupao.domain.request.UserLoginRequest;
 import com.yupi.yupao.domain.request.UserRegisetRequest;
 import com.yupi.yupao.mapper.UserMapper;
 import com.yupi.yupao.service.UserService;
+import io.swagger.models.auth.In;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -78,7 +80,7 @@ public class UserController {
     @GetMapping("/search")
     public BaseResponse<List<User>> searchUsers(String username,HttpServletRequest request)
     {
-        if(!isAdmin(request))
+        if(!userService.isAdmin(request))
         {
             throw new BussinessException(ErrorCode.NO_AUTH);
 
@@ -103,7 +105,7 @@ public class UserController {
     @PostMapping("/delete")
     public BaseResponse<Boolean> deleteUser(Integer id,HttpServletRequest request)
     {
-        if(!isAdmin(request))
+        if(!userService.isAdmin(request))
         {
             throw new BussinessException(ErrorCode.NO_AUTH);
         }
@@ -132,6 +134,19 @@ public class UserController {
         currentUser = userService.getSafetyUser(currentUser);
         return ResultUtils.success(currentUser);
     }
+    @GetMapping("/search/tages")
+    public BaseResponse<List<User>> searchUserByTags(@RequestParam(required = false) List<String> tagsNameList)
+    {
+        if(CollectionUtils.isEmpty(tagsNameList))
+        {
+            /*
+            * 你在调用别人的接口的时候是不确定他是否判断了参数是否为空,所以这里要加上一个判断
+            * */
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        List<User> users = userService.searchUsersByTags(tagsNameList);
+        return ResultUtils.success(users);
+    }
 
 
     /**
@@ -151,6 +166,19 @@ public class UserController {
 
     }
 
+    @PostMapping("/update")
+    public BaseResponse<Integer> updateUser(User user, HttpServletRequest request)
+    {
+        if(request == null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        int result = userService.updateUser(user, loginUser);
+        return ResultUtils.success(result);
+
+    }
+
     /**
      *
      * @param request
@@ -158,17 +186,5 @@ public class UserController {
      */
 
 
-    private boolean isAdmin(HttpServletRequest request) {
-        Object userObject = request.getSession().getAttribute(User_LOGIN_STATE);
-        User user = (User) userObject;
-        Integer userRole = user.getUserRole();
-/*        这里代码写的太丑陋了
-       if(userRole!=1)
-        {
-            return false;
-        }
-        return true;*/
-        boolean b = user != null && user.getUserRole() == ADMIN_ROLE;
-        return b;
-    }
+
 }

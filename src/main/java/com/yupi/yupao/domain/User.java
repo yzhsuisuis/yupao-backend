@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -17,7 +18,7 @@ public class User implements Serializable {
      * 
      */
     @TableId(type = IdType.AUTO)
-    private Long id;
+    private long id;
 
     /**
      * 用户昵称
@@ -62,11 +63,13 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**

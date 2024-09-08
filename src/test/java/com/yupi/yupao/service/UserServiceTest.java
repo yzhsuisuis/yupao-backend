@@ -101,7 +101,7 @@ public class UserServiceTest {
     @Test
     public void testSearchUsersByTags()
     {
-        List<String> tagNameList = Arrays.asList("java");
+        List<String> tagNameList = Arrays.asList("c++");
         List<User> usersList = userService.searchUsersByTags(tagNameList);
         System.out.println(usersList);
     }

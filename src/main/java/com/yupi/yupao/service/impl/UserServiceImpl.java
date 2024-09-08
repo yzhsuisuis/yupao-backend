@@ -3,6 +3,8 @@ package com.yupi.yupao.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yupi.yupao.exception.BussinessException;
 import com.yupi.yupao.common.ErrorCode;
 import com.yupi.yupao.domain.User;
@@ -16,11 +18,15 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.yupi.yupao.constant.UserConstant.ADMIN_ROLE;
 import static com.yupi.yupao.constant.UserConstant.User_LOGIN_STATE;
 
 /**
@@ -207,15 +213,98 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         {
             throw new BussinessException(ErrorCode.PARAMS_ERROR);
         }
-        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        for (String tagName : tagNameList) {
-            userQueryWrapper = userQueryWrapper.like("tags",tagName);
 
-        }
-        List<User> users = userMapper.selectList(userQueryWrapper);
-        return users.stream().map(this::getSafetyUser).collect(Collectors.toList());
+//        for (String tagName : tagNameList) {
+//            userQueryWrapper = userQueryWrapper.like("tags",tagName);
+//
+//        }
+
+//        改用内存的方式
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        List<User> userList = userMapper.selectList(queryWrapper);
+        Gson gson = new Gson();
+
+        // 2. 在内存中判断是否包含要求的标签
+        return userList.stream()
+                .filter(user -> {
+                    String tagsStr = user.getTags();
+//                    if (StringUtils.isBlank(tagsStr)) {
+//                        return false;
+//                    }
+                   // 在下面用Optional.ofNullable()来代替
+
+                    // 将字符串转换为标签集合
+                    Set<String> tempTagNameSet = gson.fromJson(tagsStr, new TypeToken<Set<String>>(){}.getType());
+                     tempTagNameSet = Optional.ofNullable(tempTagNameSet).orElse(new HashSet<>());
+                    for (String tagName : tagNameList) {
+                        if (!tempTagNameSet.contains(tagName)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                })
+                .map(this::getSafetyUser) // 假设这是一个将 User 转换为 SafeUser 的方法
+                .collect(Collectors.toList());
+
+
 
     }
+    @Override
+    public User getLoginUser(HttpServletRequest request)
+    {
+        if(request == null)
+        {
+            return null;
+        }
+        Object userObj = request.getSession().getAttribute(User_LOGIN_STATE);
+
+        if(userObj==null)
+        {
+            /*此时没有登录*/
+            throw  new BussinessException(ErrorCode.NOT_LOGIN);
+
+        }
+        return (User) userObj;
+    }
+    @Override
+    public int updateUser(User user, User loginUser)
+    {
+        if(!isAdmin(loginUser) && user.getId()!=loginUser.getId())
+        {
+            throw new BussinessException(ErrorCode.NO_AUTH);
+        }
+        User oldUser = userMapper.selectById(user);
+        if(oldUser==null)
+        {
+            throw new BussinessException(ErrorCode.NULL_ERROR);
+        }
+
+
+        return userMapper.updateById(user);
+    }
+
+    @Override
+    public boolean isAdmin(User loginUser)
+    {
+        if(loginUser == null)
+        {
+            return false;
+        }
+
+        return loginUser.getUserRole()==ADMIN_ROLE;
+
+    }
+
+    @Override
+    public boolean isAdmin(HttpServletRequest request)
+    {
+        Object userObject = request.getSession().getAttribute(User_LOGIN_STATE);
+        User user = (User) userObject;
+        Integer userRole = user.getUserRole();
+        boolean b = user != null && user.getUserRole() == ADMIN_ROLE;
+        return b;
+    }
+
 }
 
 
