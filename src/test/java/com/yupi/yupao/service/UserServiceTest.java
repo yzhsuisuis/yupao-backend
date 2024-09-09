@@ -8,6 +8,8 @@ import com.yupi.yupao.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ import javax.annotation.Resource;
 public class UserServiceTest {
     @Resource
     private UserService userService;
+    @Resource
+    private RedisTemplate redisTemplate;
     @Test
     public void test01()
     {
@@ -104,6 +108,22 @@ public class UserServiceTest {
         List<String> tagNameList = Arrays.asList("c++");
         List<User> usersList = userService.searchUsersByTags(tagNameList);
         System.out.println(usersList);
+    }
+    @Test
+    public void insertUsers()
+    {
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        valueOperations.set("yang","bo");
+        valueOperations.set("111","bo");
+        /*
+        * 这一步是没问题的
+        * */
+        User user = new User();
+        user.setUserAccount("972849883");
+        valueOperations.set("yagebi",user);
+        System.out.println(valueOperations.get("yagebi"));
+
+
     }
 
 }

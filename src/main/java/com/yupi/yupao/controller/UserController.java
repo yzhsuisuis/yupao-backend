@@ -1,6 +1,7 @@
 package com.yupi.yupao.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yupi.yupao.common.BaseResponse;
 import com.yupi.yupao.exception.BussinessException;
 import com.yupi.yupao.common.ErrorCode;
@@ -11,13 +12,17 @@ import com.yupi.yupao.domain.request.UserRegisetRequest;
 import com.yupi.yupao.mapper.UserMapper;
 import com.yupi.yupao.service.UserService;
 import io.swagger.models.auth.In;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import static com.yupi.yupao.constant.UserConstant.ADMIN_ROLE;
@@ -25,12 +30,16 @@ import static com.yupi.yupao.constant.UserConstant.User_LOGIN_STATE;
 
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
     @Resource
     private UserService userService;
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private RedisTemplate redisTemplate;
     /**
      * 用户注册
      * @param userRegisetRequest
@@ -85,6 +94,7 @@ public class UserController {
             throw new BussinessException(ErrorCode.NO_AUTH);
 
         }
+
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
         /*
         * 注意这里如果不加user特判的话可能会报空指针异常,因为他要传一个对象
@@ -120,6 +130,31 @@ public class UserController {
 
 
     }
+    @GetMapping("/recommend")
+    public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum,HttpServletRequest request)
+    {
+        User loginUser = userService.getLoginUser(request);
+        long userid = loginUser.getId();
+        String redisKeys = String.format("yupao:user:recommned:%s",userid);
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        Page<User> userPage = (Page<User>) valueOperations.get(redisKeys);
+        if(userPage != null)
+        {
+            return ResultUtils.success(userPage);
+        }
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userPage = userService.page(new Page<>(pageNum, pageSize), userQueryWrapper);
+
+
+        try {
+            valueOperations.set(redisKeys,userPage,100000, TimeUnit.MILLISECONDS);
+        } catch (Exception e) {
+            log.info("redis key set error" + e);
+        }
+        return ResultUtils.success(userPage);
+
+    }
+
     @GetMapping("/current")
     public BaseResponse<User> getCurrentUser(HttpServletRequest request)
     {

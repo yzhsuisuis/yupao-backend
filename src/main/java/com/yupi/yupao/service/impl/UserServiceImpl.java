@@ -269,6 +269,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     @Override
     public int updateUser(User user, User loginUser)
     {
+        long userid = user.getId();
+        if(userid<=0)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
         if(!isAdmin(loginUser) && user.getId()!=loginUser.getId())
         {
             throw new BussinessException(ErrorCode.NO_AUTH);
