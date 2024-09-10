@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="伙伴匹配系统" />
+    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="伙伴匹配系统">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_12_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_dns_4_1_65_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_dns_4_1_65_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava3_rxjava_3_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_cache_cache_api_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_marshalling_jboss_marshalling_2_0_11_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_marshalling_jboss_marshalling_river_2_0_11_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jodd_jodd_bean_5_1_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jodd_jodd_core_5_1_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_redisson_redisson_3_16_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4ae37995-1ee4-40af-9717-593d60cbeaaf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4ae37995-1ee4-40af-9717-593d60cbeaaf.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/YuPaoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/YuPaoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/YuPaoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/YuPaoApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yupao-backend-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yupao-backend-1.0-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yupao-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/yupao-backend.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,31 +64,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "D:/jdk8/yupao-backend",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "7a2f53b42c94f6674e952313500d6ca9",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/jdk8/yupao-backend&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;7a2f53b42c94f6674e952313500d6ca9&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -92,6 +116,37 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedissonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yupi.yupao.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
+      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.RedissonTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedissonTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yupi.yupao.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
+      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.RedissonTest" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,6 +191,7 @@
       </method>
     </configuration>
     <configuration name="YuPaoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
       <module name="yupao-backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yupi.yupao.YuPaoApplication" />
       <method v="2">
@@ -144,6 +200,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RedissonTest" />
+        <item itemvalue="JUnit.RedissonTest.test01" />
         <item itemvalue="JUnit.UserServiceTest.insertUsers" />
         <item itemvalue="JUnit.UserServiceTest.testSearchUsersByTags" />
         <item itemvalue="Application.YuPaoApplication" />
@@ -165,7 +223,8 @@
       <workItem from="1725699932311" duration="208000" />
       <workItem from="1725700169605" duration="2627000" />
       <workItem from="1725702842883" duration="11274000" />
-      <workItem from="1725779259313" duration="24411000" />
+      <workItem from="1725779259313" duration="30347000" />
+      <workItem from="1725894882476" duration="3987000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
