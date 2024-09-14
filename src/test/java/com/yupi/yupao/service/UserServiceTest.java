@@ -2,11 +2,14 @@ package com.yupi.yupao.service;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 import com.yupi.yupao.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -20,6 +23,8 @@ public class UserServiceTest {
     private UserService userService;
     @Resource
     private RedisTemplate redisTemplate;
+    @Resource
+    private RedissonClient redissonClient;
     @Test
     public void test01()
     {
@@ -123,6 +128,30 @@ public class UserServiceTest {
         valueOperations.set("yagebi",user);
         System.out.println(valueOperations.get("yagebi"));
 
+
+    }
+    @Test
+    public void watchDog()
+    {
+        RLock lock = redissonClient.getLock("yupao:precachejob:watchDog:lock");
+        try {
+            //看门狗机制
+            if(lock.tryLock(0L,-1, TimeUnit.MILLISECONDS))
+            {
+                Thread.sleep(300000);
+                System.out.println("getlock" + Thread.currentThread().getId());
+
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            if(lock.isHeldByCurrentThread()) //如果发现是自己的锁,就直接给释放掉
+            {
+                System.out.println("unlock"+ Thread.currentThread().getId());
+                lock.unlock();
+
+            }
+        }
 
     }
 

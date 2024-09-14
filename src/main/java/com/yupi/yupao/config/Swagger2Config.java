@@ -22,7 +22,6 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-//扫描路径，获取controller层的接口    .apis(RequestHandlerSelectors.basePackage("com.yupi.yupao.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
