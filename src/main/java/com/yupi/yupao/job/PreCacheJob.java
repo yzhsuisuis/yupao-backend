@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 @Slf4j
-@Component
+//@Component
 public class PreCacheJob {
     @Resource
     private UserService userService;

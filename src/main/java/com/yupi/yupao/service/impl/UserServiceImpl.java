@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yupi.yupao.domain.Team;
+import com.yupi.yupao.domain.dto.TeamQuery;
+import com.yupi.yupao.domain.enums.TeamStatusEnum;
+import com.yupi.yupao.domain.vo.TeamUserVO;
 import com.yupi.yupao.exception.BussinessException;
 import com.yupi.yupao.common.ErrorCode;
 import com.yupi.yupao.domain.User;
@@ -18,10 +22,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -309,6 +310,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         boolean b = user != null && user.getUserRole() == ADMIN_ROLE;
         return b;
     }
+
+
+
 
 }
 

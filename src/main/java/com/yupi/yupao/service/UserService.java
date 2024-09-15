@@ -2,6 +2,8 @@ package com.yupi.yupao.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupao.domain.User;
+import com.yupi.yupao.domain.dto.TeamQuery;
+import com.yupi.yupao.domain.vo.TeamUserVO;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,4 +39,6 @@ public interface UserService extends IService<User> {
     boolean isAdmin(User loginUser);
 
     boolean isAdmin(HttpServletRequest request);
+
+
 }
