@@ -11,7 +11,9 @@ import com.yupi.yupao.domain.User;
 import com.yupi.yupao.domain.UserTeam;
 import com.yupi.yupao.domain.dto.TeamQuery;
 import com.yupi.yupao.domain.request.TeamAddRequest;
+import com.yupi.yupao.domain.request.TeamDeleteRequest;
 import com.yupi.yupao.domain.request.TeamJoinRequest;
+import com.yupi.yupao.domain.request.TeamQutiRequest;
 import com.yupi.yupao.domain.vo.TeamUserVO;
 import com.yupi.yupao.exception.BussinessException;
 import com.yupi.yupao.service.TeamService;
@@ -58,17 +60,7 @@ public class TeamController {
         return ResultUtils.success(teamId);
     }
 
-    @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteTeam(@RequestBody Long teamId) {
-        if (teamId <= 0) {
-            throw new BussinessException(ErrorCode.PARAMS_ERROR);
-        }
-        boolean isDelete = teamService.removeById(teamId);
-        if (!isDelete) {
-            throw new BussinessException(ErrorCode.SYSTEM_ERROR, "删除队伍失败");
-        }
-        return ResultUtils.success(true);
-    }
+
 
     @PostMapping("/update")
     public BaseResponse<Boolean> updateTeam(@RequestBody Team team) {
@@ -86,9 +78,15 @@ public class TeamController {
 
     @GetMapping("/list")
     public BaseResponse<List<TeamUserVO>> listTeams(TeamQuery teamQuery, HttpServletRequest request) {
+
+
         /*
-         * 为什么还要在这里判断一下
-         * */
+        * 1. 先根据查询条件查询出来符合条件的TeamUserVo记录
+        * 2. 把涉及到的全部TeamId弄到一起TeamIdList
+        * 3. 找出已经加入的队伍,(添加hashjoin字段) teamId in TeamIdList and "userId" = userId
+        * 4. 为已经加入的队伍加上hashJoin字段
+        *
+        * */
         if (teamQuery == null) {
             throw new BussinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -97,6 +95,7 @@ public class TeamController {
         /*
          * 这里TeamUserVO.Id 是被Team拷贝上去的
          * */
+
         List<Long> idList = teamUserVOList.stream().map(TeamUserVO::getId).collect(Collectors.toList());
         /*
          * 为每一个VO添加,hasJoin字段
@@ -105,15 +104,17 @@ public class TeamController {
         User loginUser = userService.getLoginUser(request);
         long userId = loginUser.getId();
         queryWrapper.eq("userId", userId);
-        queryWrapper.in("id", idList);
+        //queryWrapper.in("id", idList);
         List<UserTeam> userTeamList = userTeamService.list(queryWrapper);
-        Set<Long> hasJoinTeamIdSet = userTeamList.stream().map(UserTeam::getId).collect(Collectors.toSet());
+
+        Set<Long> hasJoinTeamIdSet = userTeamList.stream().map(UserTeam::getTeamId).collect(Collectors.toSet());
         teamUserVOList.forEach(team -> {
                     boolean isContains = hasJoinTeamIdSet.contains(team.getId());
                     team.setHasJoin(isContains);
                 }
 
         );
+        System.err.println(teamUserVOList);
         /*
          * 为查询到的每一个队伍添加人数字段
          * 1.现在关联表中,广撒网,然后根据id分组
@@ -160,5 +161,106 @@ public class TeamController {
         User loginUser = userService.getLoginUser(request);
         boolean result = teamService.joinTeam(teamJoinRequest, loginUser);
         return ResultUtils.success(result);
+    }
+
+    @PostMapping("/quit")
+    public BaseResponse<Boolean> quitTeam(@RequestBody TeamQutiRequest teamQutiRequest,HttpServletRequest request)
+    {
+        if(teamQutiRequest==null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.quitTeam(teamQutiRequest,loginUser);
+        return ResultUtils.success(result);
+
+
+    }
+    /*
+    *
+    * 解散队伍逻辑
+
+	1. 检查队伍是否存在
+	2. 判断是不是队长,需要传入loginuser
+	3. 删除队伍的关联信息
+删除队伍
+    * */
+    @PostMapping("/delete")
+    public BaseResponse<Boolean> deleteTeam(@RequestBody TeamDeleteRequest teamDeleteRequest,HttpServletRequest request) {
+        if(teamDeleteRequest == null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Long teamId = teamDeleteRequest.getTeamId();
+
+        if(teamId == null || teamId <=0)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        boolean result = teamService.deleteTeam(teamId,loginUser);
+        if(!result)
+        {
+            throw new BussinessException(ErrorCode.SYSTEM_ERROR,"队伍删除失败");
+        }
+        return ResultUtils.success(result);
+    }
+    @GetMapping("/list/my/create")
+    public BaseResponse<List<TeamUserVO>> listMyCreateTeams(TeamQuery teamQuery,HttpServletRequest request)
+    {
+        if(teamQuery ==  null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        long userId = loginUser.getId();
+        teamQuery.setUserId(userId);
+        List<TeamUserVO> teamUserVOList = teamService.listTeams(teamQuery, true);
+        return ResultUtils.success(teamUserVOList);
+
+    }
+    @GetMapping("/list/my/join")
+    public BaseResponse<List<TeamUserVO>> listMyJoinTeams(TeamQuery teamQuery,HttpServletRequest request)
+    {
+        if(teamQuery == null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        long userId = loginUser.getId();
+        QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userId",userId);
+        List<UserTeam> userTeamList = userTeamService.list(queryWrapper);
+
+        Map<Long, List<UserTeam>> listMap = userTeamList.stream()
+                .collect(Collectors.groupingBy(UserTeam::getTeamId));
+        List<Long> idList = new ArrayList<>(listMap.keySet());
+        teamQuery.setIdList(idList);
+        List<TeamUserVO> teamUserVOList = teamService.listTeams(teamQuery, true);
+        /*
+         * hashJoin查询出来的,每一个队伍都应该加上hasJoin字段
+         *
+         * */
+        teamUserVOList.forEach( teamUserVO -> {
+            teamUserVO.setHasJoin(true);
+        });
+
+        /*
+         * 为查询到的每一个队伍添加人数字段
+         * 1.现在关联表中,广撒网,然后根据id分组
+         * */
+
+        QueryWrapper<UserTeam> userTeamQueryWrapper = new QueryWrapper<>();
+        userTeamQueryWrapper.in("teamId", idList);
+        userTeamList = userTeamService.list(userTeamQueryWrapper);
+        Map<Long, List<UserTeam>> teamIdUserTeamList = userTeamList.stream().collect(Collectors.groupingBy(UserTeam::getTeamId));
+        /*
+         * 然后根据分组,对每个进行数量赋值
+         * */
+        teamUserVOList.forEach(teamUserVO -> teamUserVO.setHasJoinNum(teamIdUserTeamList.getOrDefault(teamUserVO.getId(), new ArrayList<>()).size()));
+
+
+        return ResultUtils.success(teamUserVOList);
+
     }
 }

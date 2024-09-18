@@ -37,12 +37,15 @@ public class PreCacheJob {
             if(lock.tryLock(0L,30000L,TimeUnit.MILLISECONDS))
             {
                 for (Long userid : mainUserList) {
+
                     String redisKeys = String.format("yupao:user:recommned:%s",userid);
                     QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+
 
                     Page<User> userPage = userService.page(new Page<>(1, 20), userQueryWrapper);
 
                     ValueOperations valueOperations = redisTemplate.opsForValue();
+
                     valueOperations.set(redisKeys,userPage,300000, TimeUnit.MILLISECONDS);
 
                     try {

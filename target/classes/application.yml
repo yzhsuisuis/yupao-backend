@@ -16,9 +16,9 @@ spring:
     port: 6379
     host: localhost
     database: 0
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ANT_PATH_MATCHER
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+08
 
 server:
   port: 8080

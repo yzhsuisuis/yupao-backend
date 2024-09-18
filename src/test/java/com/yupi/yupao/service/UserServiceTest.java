@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yupi.yupao.domain.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -153,6 +156,29 @@ public class UserServiceTest {
             }
         }
 
+    }
+    @Test
+    void GsonTest()
+    {
+        Gson gson = new Gson();
+        String userTags = "[\"java\",\"c++\"]";
+        String userTags2 = "[\"2\",\"3\"]";
+
+        List<String> userTagList = gson.fromJson(userTags, new TypeToken<List<String>>() {
+        }.getType());
+        List<String> userTagList2 = gson.fromJson(userTags2, new TypeToken<List<Integer>>() {
+        }.getType());
+
+
+        System.out.println(userTagList);
+        System.out.println(userTagList2);
+        /*
+        * 运行结果
+        * [java, c++]
+          [2, 3]
+        *
+        *
+        * */
     }
 
 }

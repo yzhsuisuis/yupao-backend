@@ -6,6 +6,7 @@ import com.yupi.yupao.domain.dto.TeamQuery;
 import com.yupi.yupao.domain.vo.TeamUserVO;
 
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -41,4 +42,5 @@ public interface UserService extends IService<User> {
     boolean isAdmin(HttpServletRequest request);
 
 
+    List<User> matchUsers(long num, User user);
 }

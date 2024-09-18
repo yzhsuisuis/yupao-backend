@@ -3,6 +3,7 @@ package com.yupi.yupao.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yupi.yupao.common.BaseResponse;
+import com.yupi.yupao.domain.vo.UserVO;
 import com.yupi.yupao.exception.BussinessException;
 import com.yupi.yupao.common.ErrorCode;
 import com.yupi.yupao.common.ResultUtils;
@@ -14,6 +15,7 @@ import com.yupi.yupao.service.UserService;
 import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.CollectionUtils;
@@ -169,19 +171,27 @@ public class UserController {
         currentUser = userService.getSafetyUser(currentUser);
         return ResultUtils.success(currentUser);
     }
-    @GetMapping("/search/tages")
-    public BaseResponse<List<User>> searchUserByTags(@RequestParam(required = false) List<String> tagsNameList)
-    {
-        if(CollectionUtils.isEmpty(tagsNameList))
-        {
-            /*
-            * 你在调用别人的接口的时候是不确定他是否判断了参数是否为空,所以这里要加上一个判断
-            * */
-            throw new BussinessException(ErrorCode.PARAMS_ERROR);
-        }
-        List<User> users = userService.searchUsersByTags(tagsNameList);
-        return ResultUtils.success(users);
+//    @GetMapping("/search/tages")
+//    public BaseResponse<List<User>> searchUserByTags(@RequestParam(required = false) List<String> tagsNameList)
+//    {
+//        if(CollectionUtils.isEmpty(tagsNameList))
+//        {
+//            /*
+//            * 你在调用别人的接口的时候是不确定他是否判断了参数是否为空,所以这里要加上一个判断
+//            * */
+//            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+//        }
+//        List<User> users = userService.searchUsersByTags(tagsNameList);
+//        return ResultUtils.success(users);
+//    }
+@GetMapping("/search/tags")
+public BaseResponse<List<User>> searchUsersByTags(@RequestParam(required = false) List<String> tagNameList) {
+    if (CollectionUtils.isEmpty(tagNameList)) {
+        throw new BussinessException(ErrorCode.PARAMS_ERROR);
     }
+    List<User> userList = userService.searchUsersByTags(tagNameList);
+    return ResultUtils.success(userList);
+}
 
 
     /**
@@ -219,6 +229,31 @@ public class UserController {
      * @param request
      * @return
      */
+    @GetMapping("/match")
+    public BaseResponse<List<User>> matchUsers(long num, HttpServletRequest request) {
+        if (num <= 0 || num > 20) {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getLoginUser(request);
+        return ResultUtils.success(userService.matchUsers(num, user));
+    }
+    @GetMapping("/getone")
+    public BaseResponse<UserVO> getUserById(Long id,HttpServletRequest request)
+    {
+        User loginUser = userService.getLoginUser(request);
+        if(loginUser == null)
+        {
+            throw new BussinessException(ErrorCode.NOT_LOGIN);
+        }
+        if(id<= 0 || id == null)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR);
+        }
+        User user = userService.getById(id);
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user,userVO);
+        return ResultUtils.success(userVO);
+    }
 
 
 

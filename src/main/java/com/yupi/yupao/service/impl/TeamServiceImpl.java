@@ -10,6 +10,7 @@ import com.yupi.yupao.domain.UserTeam;
 import com.yupi.yupao.domain.dto.TeamQuery;
 import com.yupi.yupao.domain.enums.TeamStatusEnum;
 import com.yupi.yupao.domain.request.TeamJoinRequest;
+import com.yupi.yupao.domain.request.TeamQutiRequest;
 import com.yupi.yupao.domain.vo.TeamUserVO;
 import com.yupi.yupao.domain.vo.UserVO;
 import com.yupi.yupao.exception.BussinessException;
@@ -201,13 +202,15 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
                     QueryWrapper<UserTeam> userTeamQueryWrapper = new QueryWrapper<>();
                     userTeamQueryWrapper.eq("userId", userId);
                     long hasJoinNum = userTeamService.count(userTeamQueryWrapper);
-                    if (hasJoinNum > 5) {
+                    if (hasJoinNum > 10) {
                         throw new BussinessException(ErrorCode.PARAMS_ERROR, "最多创建和加入 5 个队伍");
                     }
                     // 不能重复加入已加入的队伍
                     userTeamQueryWrapper = new QueryWrapper<>();
                     userTeamQueryWrapper.eq("userId", userId);
                     userTeamQueryWrapper.eq("teamId", teamId);
+                    List<UserTeam> list = userTeamService.list(userTeamQueryWrapper);
+                    System.out.println(list);
                     long hasUserJoinTeam = userTeamService.count(userTeamQueryWrapper);
                     if (hasUserJoinTeam > 0) {
                         throw new BussinessException(ErrorCode.PARAMS_ERROR, "用户已加入该队伍");
@@ -239,16 +242,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
     }
     @Override
     public List<TeamUserVO> listTeams(TeamQuery teamQuery, boolean isAdmin) {
-//        Long id = teamQuery.getId();
-//        List<Long> idList = teamQuery.getIdList();
-//        String searchText = teamQuery.getSearchText();
-//        String name = teamQuery.getName();
-//        String description = teamQuery.getDescription();
-//        Integer maxNum = teamQuery.getMaxNum();
-//        Long userId = teamQuery.getUserId();
-//        Integer status = teamQuery.getStatus();
-//        int pageSize = teamQuery.getPageSize();
-//        int pageNum = teamQuery.getPageNum();
+
         QueryWrapper<Team> queryWrapper = new QueryWrapper<>();
         // 组合查询条件
         if (teamQuery != null) {
@@ -295,6 +289,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         }
         queryWrapper.and(qw -> qw.gt("expireTime", new Date()).or().isNull("expireTime"));
         List<Team> teamList = this.list(queryWrapper);
+        System.out.println(teamList);
         if(CollectionUtils.isEmpty(teamList))
         {
             return new ArrayList<TeamUserVO>();
@@ -317,6 +312,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
                 UserVO userVO = new UserVO();
                 BeanUtils.copyProperties(user,userVO);
                 teamUserVO.setCreateUser(userVO);
+                System.out.println(teamUserVO);
             }
             teamUserVOList.add(teamUserVO);
 
@@ -324,6 +320,117 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
 
         }
         return teamUserVOList;
+
+    }
+
+    @Override
+    public boolean quitTeam(TeamQutiRequest teamQutiRequest, User loginUser) {
+        /*
+        * 这里的方法是写在TeamService里面的,仔细观察这里有3个ServiceImpl ,却只有2个Controller
+        * */
+        Long teamId = teamQutiRequest.getTeamId();
+        long userid = loginUser.getId();
+        if(teamId==null || teamId<=0)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR,"队伍不存在");
+        }
+        /*
+        * 1.先判断要退出的队伍,是否在队伍里面,你tm的没加入你退个鸡毛啊
+        * */
+        QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teamId",teamId);
+        queryWrapper.eq("userId",userid);
+        long count = userTeamService.count(queryWrapper);
+        if(count==0)
+        {
+            throw new BussinessException(ErrorCode.PARAMS_ERROR,"未加入队伍");
+        }
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teamId",teamId);
+        count = userTeamService.count(queryWrapper);
+        if(count==1)
+        {
+            this.removeById(teamId);
+        }
+        else
+        {
+            /*
+            此时队伍至少两个人
+            * 需要判断这个人是不是队长
+            * */
+            Team team = this.getTeamById(teamId);
+            Long createUserId = team.getUserId();
+            if(createUserId == userid)
+            {
+                /*
+                 * 新学到了,last用于添加自定义的sql片段
+                 * */
+                QueryWrapper<UserTeam> teamQueryWrapper = new QueryWrapper<>();
+                teamQueryWrapper.eq("teamId",teamId);
+                teamQueryWrapper.last("order by id asc limit 2");
+                List<UserTeam> teamUserList = userTeamService.list(teamQueryWrapper);
+                if(CollectionUtils.isEmpty(teamUserList) || teamUserList.size()<=1)
+                {
+                    throw new BussinessException(ErrorCode.SYSTEM_ERROR);
+                }
+                UserTeam userTeam = teamUserList.get(1);
+                Long nextTeamCreaterId = userTeam.getUserId();
+                Team nextteam = new Team();
+                nextteam.setId(teamId);
+                nextteam.setUserId(nextTeamCreaterId);
+                boolean result = this.updateById(nextteam);
+                if(!result)
+                {
+                    throw new BussinessException(ErrorCode.SYSTEM_ERROR,"更换队长失败");
+                }
+            }
+
+        }
+        /*
+        *
+        * 由于变量复用,这里略显臃肿
+        * */
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teamId",teamId);
+        queryWrapper.eq("userId",userid);
+        boolean result = userTeamService.remove(queryWrapper);
+        return result;
+    }
+
+    @Override
+    public boolean deleteTeam(Long teamId, User loginUser) {
+        /*
+        * 1. 判断队伍是否存在
+        * */
+        if(teamId == null || teamId <=0)
+        {
+            return false;
+        }
+        Team team = this.getTeamById(teamId);
+        if(team == null)
+        {
+            return false;
+        }
+        /*
+        * 2. 判断是不是队长
+        * */
+        Long createUserId = team.getUserId();
+        if(loginUser.getId() != createUserId)
+        {
+            return false;
+        }
+        /*
+        * 3. 删除队伍关联信息
+        * */
+        QueryWrapper<UserTeam> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teamId",teamId);
+        boolean result = userTeamService.remove(queryWrapper);
+        if(!result)
+        {
+            throw new BussinessException(ErrorCode.SYSTEM_ERROR);
+        }
+        return this.removeById(teamId);
+
 
     }
 

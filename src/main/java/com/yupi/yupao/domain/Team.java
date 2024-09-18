@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,7 +40,8 @@ public class Team implements Serializable {
     /**
      * 过期时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date expireTime;
 
     /**
@@ -59,13 +62,15 @@ public class Team implements Serializable {
     /**
      * 创建时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+
     private Date createTime;
 
     /**
      * 
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+
     private Date updateTime;
 
     /**

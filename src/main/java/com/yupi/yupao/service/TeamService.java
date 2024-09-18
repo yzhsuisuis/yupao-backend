@@ -4,8 +4,8 @@ import com.yupi.yupao.domain.Team;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupao.domain.User;
 import com.yupi.yupao.domain.dto.TeamQuery;
-import com.yupi.yupao.domain.request.TeamAddRequest;
 import com.yupi.yupao.domain.request.TeamJoinRequest;
+import com.yupi.yupao.domain.request.TeamQutiRequest;
 import com.yupi.yupao.domain.vo.TeamUserVO;
 
 import java.util.List;
@@ -21,4 +21,8 @@ public interface TeamService extends IService<Team> {
     boolean joinTeam(TeamJoinRequest teamJoinRequest, User loginUser);
 
     List<TeamUserVO> listTeams(TeamQuery teamQuery, boolean isAdmin);
+
+    boolean quitTeam(TeamQutiRequest teamQutiRequest, User loginUser);
+
+    boolean deleteTeam(Long teamId, User loginUser);
 }

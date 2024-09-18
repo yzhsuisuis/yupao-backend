@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 用户队伍关系
@@ -32,16 +35,19 @@ public class UserTeam implements Serializable {
     /**
      * 加入时间
      */
+
     private Date joinTime;
 
     /**
      * 创建时间
      */
+
     private Date createTime;
 
     /**
      * 
      */
+
     private Date updateTime;
 
     /**
