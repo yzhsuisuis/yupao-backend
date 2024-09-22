@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.SpringVersion;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.Assert;
@@ -179,6 +181,14 @@ public class UserServiceTest {
         *
         *
         * */
+    }
+    @Test
+    void test03()
+    {
+        String version = SpringVersion.getVersion();
+        String version1 = SpringBootVersion.getVersion();
+        System.out.println(version);
+        System.out.println(version1);
     }
 
 }

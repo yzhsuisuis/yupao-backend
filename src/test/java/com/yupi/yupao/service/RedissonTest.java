@@ -34,7 +34,7 @@ public class RedissonTest {
     @Test
     public void test02()
     {
-        Jedis jedis = new Jedis("106.54.235.189", 6379);
+        Jedis jedis = new Jedis("192.168.213.135", 6379);
 
         // 进行身份验证，替换 "your_password_here" 为你的 Redis 密码
         jedis.auth("123456");

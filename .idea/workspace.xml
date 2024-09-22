@@ -5,36 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="组队功能">
-      <change afterPath="$PROJECT_DIR$/.idea/JavaSceneConfigState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/UserTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/domain/UserTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/config/InterceptorConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/RedissonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/RedissonTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/controller/TeamController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/controller/TeamController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/Team.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/UserTeam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/domain/UserTeam.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/TeamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/TeamService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/TeamServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/TeamServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/UserServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/UserServiceImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/config/InterceptorConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/config/InterceptorConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/RedissonTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/RedissonTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yupao-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/yupao-backend.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,22 +98,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RedissonTest.test03">
-    <configuration name="RedissonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yupao-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.yupi.yupao.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
-      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.RedissonTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.YuPaoApplication">
     <configuration name="RedissonTest.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yupao-backend" />
       <extension name="coverage">
@@ -180,6 +147,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserServiceTest.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yupi.yupao.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
+      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="test03" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserServiceTest.watchDog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yupao-backend" />
       <extension name="coverage">
@@ -213,11 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest.test03" />
+        <item itemvalue="JUnit.RedissonTest.test02" />
         <item itemvalue="JUnit.RedissonTest.test03" />
         <item itemvalue="JUnit.UserServiceTest.GsonTest" />
-        <item itemvalue="JUnit.RedissonTest.test02" />
         <item itemvalue="JUnit.UserServiceTest.watchDog" />
-        <item itemvalue="JUnit.RedissonTest" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +226,7 @@
       <workItem from="1726122561191" duration="4268000" />
       <workItem from="1726151171096" duration="32283000" />
       <workItem from="1726312083685" duration="60236000" />
-      <workItem from="1726652054138" duration="1893000" />
+      <workItem from="1726652054138" duration="17490000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
