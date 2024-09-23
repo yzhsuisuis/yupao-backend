@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="组队功能">
+    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="最终版">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/config/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/config/InterceptorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/RedissonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/RedissonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/yupi/yupao/service/UserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/config/InterceptorConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/config/InterceptorConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/job/PreCacheJob.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/RedissonTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/RedissonTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/yupi/yupao/service/UserServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +216,7 @@
       <workItem from="1726122561191" duration="4268000" />
       <workItem from="1726151171096" duration="32283000" />
       <workItem from="1726312083685" duration="60236000" />
-      <workItem from="1726652054138" duration="17490000" />
+      <workItem from="1726652054138" duration="19355000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
@@ -347,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1726298406638</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="最终版">
+      <created>1727010290532</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1727010290532</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +371,8 @@
     <MESSAGE value="12345" />
     <MESSAGE value="伙伴匹配系统" />
     <MESSAGE value="组队功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="组队功能" />
+    <MESSAGE value="最终版" />
+    <option name="LAST_COMMIT_MESSAGE" value="最终版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
