@@ -27,6 +27,7 @@ public class PreCacheJob {
     @Resource
     private RedissonClient redissonClient;
      private List<Long> mainUserList = Arrays.asList(1L);
+
     @Scheduled(cron = "0 * * * * ?")
     public void doCacheRecommendUsers ()
     {

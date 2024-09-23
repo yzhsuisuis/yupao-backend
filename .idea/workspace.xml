@@ -7,6 +7,8 @@
     <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="最终版">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/create_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +218,7 @@
       <workItem from="1726122561191" duration="4268000" />
       <workItem from="1726151171096" duration="32283000" />
       <workItem from="1726312083685" duration="60236000" />
-      <workItem from="1726652054138" duration="19355000" />
+      <workItem from="1726652054138" duration="23242000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
@@ -344,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727010290532</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="最终版">
+      <created>1727091963203</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1727091963203</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,26 +437,6 @@
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
-          <line>235</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
-          <line>204</line>
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/TeamController.java</url>
           <line>210</line>
           <option name="timeStamp" value="120" />
@@ -461,11 +450,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/controller/TeamController.java</url>
           <line>217</line>
           <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
-          <line>247</line>
-          <option name="timeStamp" value="123" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/yupi/yupao/service/impl/TeamServiceImpl.java</url>
