@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="最终版">
+    <list default="true" id="f8fc8899-daad-4ea9-a21c-e73735b6d7d6" name="Changes" comment="最终版+README">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/common/JacksonObjectMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/yupi/yupao/common/JacksonObjectMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4ae37995-1ee4-40af-9717-593d60cbeaaf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4ae37995-1ee4-40af-9717-593d60cbeaaf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yupi/yupao/job/PreCacheJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +92,23 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.YuPaoApplication">
+  <component name="RunManager" selected="JUnit.RedissonTest.test01">
+    <configuration name="RedissonTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yupao-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yupi.yupao.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
+      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.RedissonTest" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RedissonTest.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yupao-backend" />
       <extension name="coverage">
@@ -155,22 +173,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.watchDog" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yupao-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.yupi.yupao.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.yupi.yupao.service" />
-      <option name="MAIN_CLASS_NAME" value="com.yupi.yupao.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="watchDog" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UserCenterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-center-backend-master" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yupi.yupao.YuPaoApplication" />
@@ -188,11 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RedissonTest.test01" />
         <item itemvalue="JUnit.UserServiceTest.test03" />
         <item itemvalue="JUnit.RedissonTest.test02" />
         <item itemvalue="JUnit.RedissonTest.test03" />
         <item itemvalue="JUnit.UserServiceTest.GsonTest" />
-        <item itemvalue="JUnit.UserServiceTest.watchDog" />
       </list>
     </recent_temporary>
   </component>
@@ -219,6 +221,12 @@
       <workItem from="1726151171096" duration="32283000" />
       <workItem from="1726312083685" duration="60236000" />
       <workItem from="1726652054138" duration="23242000" />
+      <workItem from="1727102382357" duration="2773000" />
+      <workItem from="1727142204363" duration="527000" />
+      <workItem from="1727189706988" duration="324000" />
+      <workItem from="1727192323138" duration="1754000" />
+      <workItem from="1727226723009" duration="1661000" />
+      <workItem from="1727230938172" duration="2738000" />
     </task>
     <task id="LOCAL-00001" summary="1233">
       <created>1725537914841</created>
@@ -353,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727091963203</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="最终版+README">
+      <created>1727102636004</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727102636004</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +396,8 @@
     <MESSAGE value="伙伴匹配系统" />
     <MESSAGE value="组队功能" />
     <MESSAGE value="最终版" />
-    <option name="LAST_COMMIT_MESSAGE" value="最终版" />
+    <MESSAGE value="最终版+README" />
+    <option name="LAST_COMMIT_MESSAGE" value="最终版+README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

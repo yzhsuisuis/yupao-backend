@@ -214,6 +214,7 @@ public class JacksonObjectMapper extends ObjectMapper {
    1. 引入依赖
 
    ```xml
+两个依赖包要导入
            <dependency>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-data-redis</artifactId>
